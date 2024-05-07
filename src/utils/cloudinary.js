@@ -5,8 +5,8 @@ import { fileURLToPath } from "url";
           
 cloudinary.config({ 
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: CLOUDINARY_API_KEY, 
-  api_secret: CLOUDINARY_API_SECRET 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET 
 });
 
 
@@ -19,6 +19,8 @@ const uploadOnCloudinary = async (localFilePath) => {
         })
 
         console.log("File is uploaded on cloudinary ", response.url);
+        //unlink the path
+        fs.unlinkSync(localFilePath);
         return response;
     } catch (error) {
         //unlink the path
@@ -28,4 +30,4 @@ const uploadOnCloudinary = async (localFilePath) => {
 }
 
 
-export { uploadOnCloudinary };
+export default uploadOnCloudinary;
