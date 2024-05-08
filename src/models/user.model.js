@@ -29,7 +29,7 @@ const userSchema = new Schema({
     },
     coverImage: {
         type: String,  //same cloudnary url use karenge
-        // required: true,
+        required: true,
     },
     password: {
         type: String,
